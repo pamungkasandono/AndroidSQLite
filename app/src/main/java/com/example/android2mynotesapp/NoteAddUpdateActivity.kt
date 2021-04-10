@@ -103,7 +103,8 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             if (isEdit) {
-                val result = noteHelper.update(note?.id.toString(), values).toLong()
+//                val result = noteHelper.update(note?.id.toString(), values).toLong()
+                val result = noteHelper.update(note?.id.toString(), values)
                 if (result > 0) {
                     setResult(RESULT_UPDATE, intent)
                     finish()
@@ -116,7 +117,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 }
             } else {
                 note?.date = getCurrentDate()
-                values.put(DATE, getCurrentDate())
+                values.put(DatabaseContract.NoteColumns.DATE, getCurrentDate())
                 val result = noteHelper.insert(values)
 
                 if (result > 0) {
@@ -158,7 +159,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-//        super.onBackPressed()
+        super.onBackPressed()
         showAlertDialog(ALERT_DIALOG_CLOSE)
     }
 
@@ -192,7 +193,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                         setResult(RESULT_DELETE, intent)
                         finish()
                     } else {
-                        Toast.makeText(this, "Gagal menghapus data", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@NoteAddUpdateActivity, "Gagal menghapus data", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

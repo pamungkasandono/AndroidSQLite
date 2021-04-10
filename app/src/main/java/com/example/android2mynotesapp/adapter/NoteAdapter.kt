@@ -55,29 +55,26 @@ class NoteAdapter(private val activity: Activity) :
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemNoteBinding.bind(itemView)
         fun bind(note: Note) {
-            with(binding) {
-                tvItemTitle.text = note.title
-                tvItemDate.text = note.date
-                tvItemDescription.text = note.description
-                cvItemNote.setOnClickListener(
-                    CustomOnItemClickListener(
-                        adapterPosition,
-                        object : CustomOnItemClickListener.OnItemClickCallback {
-                            override fun onItemClicked(v: View?, i: Int) {
-                                val intent =
-                                    Intent(activity, NoteAddUpdateActivity::class.java).apply {
-                                        putExtra(NoteAddUpdateActivity.EXTRA_POSITION, i)
-                                        putExtra(NoteAddUpdateActivity.EXTRA_NOTE, i)
-                                    }
 
-                                activity.startActivityForResult(
-                                    intent,
-                                    NoteAddUpdateActivity.REQUEST_UPDATE
-                                )
-                            }
-                        })
-                )
-            }
+            binding.tvItemTitle.text = note.title
+            binding.tvItemDate.text = note.date
+            binding.tvItemDescription.text = note.description
+            binding.cvItemNote.setOnClickListener(
+                CustomOnItemClickListener(
+                    adapterPosition,
+                    object : CustomOnItemClickListener.OnItemClickCallback {
+                        override fun onItemClicked(v: View?, i: Int) {
+                            val intent = Intent(activity, NoteAddUpdateActivity::class.java)
+                            intent.putExtra(NoteAddUpdateActivity.EXTRA_POSITION, i)
+                            intent.putExtra(NoteAddUpdateActivity.EXTRA_NOTE, i)
+
+                            activity.startActivityForResult(
+                                intent,
+                                NoteAddUpdateActivity.REQUEST_UPDATE
+                            )
+                        }
+                    })
+            )
         }
     }
 }
