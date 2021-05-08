@@ -159,7 +159,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+//        super.onBackPressed()
         showAlertDialog(ALERT_DIALOG_CLOSE)
     }
 

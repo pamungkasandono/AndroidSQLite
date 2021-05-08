@@ -115,10 +115,8 @@ class MainActivity : AppCompatActivity() {
                             showSnackbarMessage("Satu item berhasil dihapus")
                         }
                     }
-
             }
         }
-
     }
 
     private fun showSnackbarMessage(message: String) {
